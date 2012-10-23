@@ -17,7 +17,7 @@ public class InputReader {
 	private BufferedReader inReader;
 
 	/**
-	* @param inStream input stream
+	* @param inRd input reader
 	*/
 	public InputReader(BufferedReader inRd) {
 		assert(inRd != null);
