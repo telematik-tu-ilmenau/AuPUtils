@@ -3,15 +3,28 @@ package aup;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
  *
- * @version 0.02
+ * @version 0.03
  *
  */
-public class IOUtils {
+public class InputReader {
+	/**
+	*	stream from which data will be read in
+	*/
+	private InputStream inputStream;
+
+	/**
+	* @param inStream input stream
+	*/
+	public InputReader(InputStream inStream) {
+		assert(inStream != null);
+		inputStream = inStream;
+	}
 
 	/**
 	 * This method lets you type in an floating point number of arbitrary size.
@@ -19,7 +32,7 @@ public class IOUtils {
 	 *
 	 * @return BigInteger typed in
 	 */
-	public static BigDecimal readBigDecimal() {
+	public BigDecimal readBigDecimal() {
 		BigDecimal readValue = BigDecimal.ZERO;
 		String inputString = readString();
 		try {
@@ -38,7 +51,7 @@ public class IOUtils {
 	 *
 	 * @return BigInteger typed in
 	 */
-	public static BigInteger readBigInteger() {
+	public BigInteger readBigInteger() {
 		BigInteger readValue = BigInteger.ZERO;
 		String inputString = readString();
 		try {
@@ -56,7 +69,7 @@ public class IOUtils {
 	 *
 	 * @return char value formerly read in
 	 */
-	public static char readChar() {
+	public char readChar() {
 		char readValue = Character.UNASSIGNED;
 		BufferedReader inputReader = null;
 		try {
@@ -74,7 +87,7 @@ public class IOUtils {
 	 *
 	 * @return double typed in
 	 */
-	public static double readDouble() {
+	public double readDouble() {
 		double readValue = 0.0;
 		String inputString = readString();
 		try {
@@ -92,7 +105,7 @@ public class IOUtils {
 	 *
 	 * @return float typed in
 	 */
-	public static float readFloat() {
+	public float readFloat() {
 		float readValue = 0.0F;
 		String inputString = readString();
 		try {
@@ -110,7 +123,7 @@ public class IOUtils {
 	 *
 	 * @return integer typed in
 	 */
-	public static int readInt() {
+	public int readInt() {
 		int readValue = 0;
 		String inputString = readString();
 		try {
@@ -128,7 +141,7 @@ public class IOUtils {
 	 *
 	 * @return long typed in
 	 */
-	public static long readLong() {
+	public long readLong() {
 		long readValue = 0L;
 		String inputString = readString();
 		try {
@@ -146,11 +159,11 @@ public class IOUtils {
 	 *
 	 * @return string typed in
 	 */
-	public static String readString() {
+	public String readString() {
 		String readValue = "";
 		BufferedReader inputReader = null;
 		try {
-			inputReader = new BufferedReader(new InputStreamReader(System.in));
+			inputReader = new BufferedReader(new InputStreamReader(inputStream));
 			readValue = inputReader.readLine();
 		} catch (IOException ioEx) {
 			System.err.println("IO error: " + ioEx.getLocalizedMessage());
@@ -158,4 +171,4 @@ public class IOUtils {
 		return readValue;
 	}
 
-} // END CLASS IOUtils
+} // END CLASS InputReader
