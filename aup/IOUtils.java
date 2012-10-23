@@ -14,23 +14,6 @@ import java.math.BigInteger;
 public class IOUtils {
 
 	/**
-	 * Closes a BufferedReader and catches the exception so that nothing is
-	 * thrown to the outer world
-	 *
-	 * @param inputReader
-	 *            BufferedReader which should be closed
-	 */
-	private static void closeInputReader(BufferedReader inputReader) {
-		try {
-			if (inputReader != null) {
-				inputReader.close();
-			}
-		} catch (IOException ioEx) {
-			System.err.println("IO error: " + ioEx.getMessage());
-		}
-	}
-
-	/**
 	 * This method lets you type in an floating point number of arbitrary size.
 	 * If an error occurs BigDecimal.ZERO is returned.
 	 *
@@ -82,13 +65,12 @@ public class IOUtils {
 		} catch (IOException ioEx) {
 			System.err.println("IO error: " + ioEx.getMessage());
 		}
-		closeInputReader(inputReader);
 		return readValue;
 	}
 
 	/**
 	 * This method lets you type in a floating point number and returns it. If
-	 * an error occurs 0.0F is returned.
+	 * an error occurs 0.0 is returned.
 	 *
 	 * @return double typed in
 	 */
@@ -173,7 +155,6 @@ public class IOUtils {
 		} catch (IOException ioEx) {
 			System.err.println("IO error: " + ioEx.getLocalizedMessage());
 		}
-		closeInputReader(inputReader);
 		return readValue;
 	}
 

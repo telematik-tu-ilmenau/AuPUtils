@@ -9,4 +9,5 @@ javadoc:
 
 clean:
 	rm -rf javadoc
-	rm aup/*.class
+	rm -rf aup/*.class
+	rm -f aupUtils.jar
