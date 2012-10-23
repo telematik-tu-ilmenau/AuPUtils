@@ -1,15 +1,15 @@
-SOURCEFOLDER = src
+SOURCEPATH = src
 
 all: jar javadoc
 
 jar:
-	javac $(SOURCEFOLDER)/aup/*.java
-	jar -cf aupUtils.jar -C $(SOURCEFOLDER) aup
+	javac $(SOURCEPATH)/aup/*.java
+	jar -cf aupUtils.jar -C $(SOURCEPATH) aup
 
 javadoc:
-	javadoc $(SOURCEFOLDER)/aup/*.java -d javadoc
+	javadoc $(SOURCEPATH)/aup/*.java -d javadoc
 
 clean:
 	rm -rf javadoc
-	rm -rf $(SOURCEFOLDER)/aup/*.class
+	rm -rf $(SOURCEPATH)/aup/*.class
 	rm -f aupUtils.jar

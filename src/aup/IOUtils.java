@@ -1,5 +1,7 @@
 package aup;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -10,6 +12,12 @@ import java.math.BigInteger;
  */
 public class IOUtils {
 
+	private static InputReader getInputReader() {
+		BufferedReader bufReader = new BufferedReader(new InputStreamReader(System.in));
+		InputReader reader = new InputReader(bufReader);
+		return reader;
+	}
+
 	/**
 	 * This method lets you type in an floating point number of arbitrary size.
 	 * If an error occurs BigDecimal.ZERO is returned.
@@ -17,8 +25,7 @@ public class IOUtils {
 	 * @return BigInteger typed in
 	 */
 	public static BigDecimal readBigDecimal() {
-		InputReader reader = new InputReader(System.in);
-		return reader.readBigDecimal();
+		return getInputReader().readBigDecimal();
 	}
 
 	/**
@@ -29,8 +36,7 @@ public class IOUtils {
 	 * @return BigInteger typed in
 	 */
 	public static BigInteger readBigInteger() {
-		InputReader reader = new InputReader(System.in);
-		return reader.readBigInteger();
+		return getInputReader().readBigInteger();
 	}
 
 	/**
@@ -40,8 +46,7 @@ public class IOUtils {
 	 * @return char value formerly read in
 	 */
 	public static char readChar() {
-		InputReader reader = new InputReader(System.in);
-		return reader.readChar();
+		return getInputReader().readChar();
 	}
 
 	/**
@@ -51,8 +56,7 @@ public class IOUtils {
 	 * @return double typed in
 	 */
 	public static double readDouble() {
-		InputReader reader = new InputReader(System.in);
-		return reader.readDouble();
+		return getInputReader().readDouble();
 	}
 
 	/**
@@ -62,8 +66,7 @@ public class IOUtils {
 	 * @return float typed in
 	 */
 	public static float readFloat() {
-		InputReader reader = new InputReader(System.in);
-		return reader.readFloat();
+		return getInputReader().readFloat();
 	}
 
 	/**
@@ -73,8 +76,7 @@ public class IOUtils {
 	 * @return integer typed in
 	 */
 	public static int readInt() {
-		InputReader reader = new InputReader(System.in);
-		return reader.readInt();
+		return getInputReader().readInt();
 	}
 
 	/**
@@ -84,8 +86,7 @@ public class IOUtils {
 	 * @return long typed in
 	 */
 	public static long readLong() {
-		InputReader reader = new InputReader(System.in);
-		return reader.readLong();
+		return getInputReader().readLong();
 	}
 
 	/**
@@ -95,8 +96,7 @@ public class IOUtils {
 	 * @return string typed in
 	 */
 	public static String readString() {
-		InputReader reader = new InputReader(System.in);
-		return reader.readString();
+		return getInputReader().readString();
 	}
 
 } // END CLASS IOUtils

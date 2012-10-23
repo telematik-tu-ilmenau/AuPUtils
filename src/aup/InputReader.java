@@ -2,8 +2,6 @@ package aup;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -16,14 +14,14 @@ public class InputReader {
 	/**
 	*	stream from which data will be read in
 	*/
-	private InputStream inputStream;
+	private BufferedReader inReader;
 
 	/**
 	* @param inStream input stream
 	*/
-	public InputReader(InputStream inStream) {
-		assert(inStream != null);
-		inputStream = inStream;
+	public InputReader(BufferedReader inRd) {
+		assert(inRd != null);
+		inReader = inRd;
 	}
 
 	/**
@@ -71,10 +69,8 @@ public class InputReader {
 	 */
 	public char readChar() {
 		char readValue = Character.UNASSIGNED;
-		BufferedReader inputReader = null;
 		try {
-			inputReader = new BufferedReader(new InputStreamReader(System.in));
-			readValue = (char) inputReader.read();
+			readValue = (char) inReader.read();
 		} catch (IOException ioEx) {
 			System.err.println("IO error: " + ioEx.getMessage());
 		}
@@ -161,10 +157,9 @@ public class InputReader {
 	 */
 	public String readString() {
 		String readValue = "";
-		BufferedReader inputReader = null;
 		try {
-			inputReader = new BufferedReader(new InputStreamReader(inputStream));
-			readValue = inputReader.readLine();
+			readValue = inReader.readLine();
+			System.out.println(readValue);
 		} catch (IOException ioEx) {
 			System.err.println("IO error: " + ioEx.getLocalizedMessage());
 		}
