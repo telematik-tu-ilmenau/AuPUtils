@@ -11,7 +11,7 @@ import java.math.BigInteger;
 
 public class InputReaderTest {
 
-	public InputReader getInputReader(String file) {
+	private InputReader getInputReader(String file) {
 		FileReader filestream = null;
 		try {
 			filestream = new FileReader(file);

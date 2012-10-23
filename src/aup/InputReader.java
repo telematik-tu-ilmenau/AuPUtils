@@ -159,7 +159,6 @@ public class InputReader {
 		String readValue = "";
 		try {
 			readValue = inReader.readLine();
-			System.out.println(readValue);
 		} catch (IOException ioEx) {
 			System.err.println("IO error: " + ioEx.getLocalizedMessage());
 		}

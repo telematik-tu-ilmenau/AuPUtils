@@ -7,4 +7,4 @@ $CLASSPATH="$LIBPATH\junit.jar;$TESTPATH;$SRCPATH"
 javac -cp $CLASSPATH $TESTPATH\*.java
 
 # run tests
-java -cp $CLASSPATH org.junit.runner.JUnitCore InputReaderTest
+java -cp $CLASSPATH org.junit.runner.JUnitCore InputReaderTest FileUtilsTest
