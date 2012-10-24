@@ -1,26 +1,33 @@
 SOURCEPATH=src
 LIBPATH=lib
 TESTPATH=test
+EXAMPLEPATH=examples
 
 # Linux/Unix/OSX
 CLASSPATH=lib/junit.jar:test:src
 # Windows
-#CLASSPATH=lib/junit.jar;test;src
+# CLASSPATH=lib/junit.jar;test;src
 
-all: jar javadoc tests
+all: aupUtils jar javadoc tests examples
 
-jar:
-	javac $(SOURCEPATH)/aup/*.java
+jar: aupUtils
 	jar -cf aupUtils.jar -C $(SOURCEPATH) aup
+
+aupUtils:
+	javac $(SOURCEPATH)/aup/*.java
 
 javadoc:
 	javadoc $(SOURCEPATH)/aup/*.java -d javadoc
 
-tests:
+tests: aupUtils
 	javac -cp $(CLASSPATH) $(TESTPATH)/*.java
+
+examples: aupUtils
+	javac -cp $(CLASSPATH) $(EXAMPLEPATH)/*.java
 
 clean:
 	rm -rf javadoc
 	rm -rf $(SOURCEPATH)/aup/*.class
+	rm -rf $(EXAMPLEPATH)/*.class
 	rm -f aupUtils.jar
 	rm -rf $(TESTPATH)/*.class

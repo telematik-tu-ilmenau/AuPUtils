@@ -2,6 +2,7 @@ package aup;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
@@ -12,7 +13,20 @@ import java.math.BigInteger;
  */
 public class IOUtils {
 
+	/**
+	 * Get an InputReader for the standard input stream.
+	 *
+	 * @return InputReader for System.in
+	 */
 	private static InputReader getInputReader() {
+		try {
+			int bytesAvailable = System.in.available();
+			assert bytesAvailable >= 0 : "System.in bytes available " + bytesAvailable;
+		} catch (IOException ioEx) {
+			// System.in was maybe closed
+			System.err.println("Input error from System.in: "
+					+ ioEx.getMessage());
+		}
 		BufferedReader bufReader = new BufferedReader(new InputStreamReader(System.in));
 		InputReader reader = new InputReader(bufReader);
 		return reader;

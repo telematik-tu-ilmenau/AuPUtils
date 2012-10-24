@@ -17,10 +17,12 @@ public class InputReader {
 	private BufferedReader inReader;
 
 	/**
+	* Stores a BufferedReader for later use
+	*
 	* @param inRd input reader
 	*/
 	public InputReader(BufferedReader inRd) {
-		assert(inRd != null);
+		assert inRd != null : "invalid BufferedReader " + inRd;
 		inReader = inRd;
 	}
 
