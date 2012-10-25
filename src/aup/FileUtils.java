@@ -64,14 +64,14 @@ public class FileUtils {
 	/**
 	*
 	* @param tmpMatrix row list
-	* @param maxLength maximum row length
+	* @param maxRowLength maximum row length
 	*
 	* @return quadratic matrix of ints
 	*/
-	private static int[][] getIntMatrixFromRowList(List<Integer[]> tmpMatrix, int maxLength) {
-		int[][] matrix = new int[tmpMatrix.size()][maxLength];
+	private static int[][] getIntMatrixFromRowList(List<Integer[]> tmpMatrix, int maxRowLength) {
+		int[][] matrix = new int[tmpMatrix.size()][maxRowLength];
 
-		if (maxLength > 0 && tmpMatrix.size() > 0)
+		if (maxRowLength > 0 && tmpMatrix.size() > 0)
 			for (int i = 0; i < matrix.length; ++i)
 				for (int j = 0; j < tmpMatrix.get(i).length; ++j)
 					matrix[i][j] = tmpMatrix.get(i)[j];
@@ -126,7 +126,7 @@ public class FileUtils {
 		List<Integer[]> tmpMatrix = new ArrayList<Integer[]>();
 		Scanner fileScanner = null;
 		Scanner lineScanner = null;
-		int maxLength = 0;
+		int maxRowLength = 0;
 
 		try {
 			fileScanner = new Scanner(dataFile);
@@ -140,8 +140,8 @@ public class FileUtils {
 				Integer[] row = tmpRow.toArray(new Integer[tmpRow.size()]);
 				tmpMatrix.add(row);
 				
-				if (row.length > maxLength)
-					maxLength = row.length;
+				if (row.length > maxRowLength)
+					maxRowLength = row.length;
 				
 				if (lineScanner != null)
 					lineScanner.close();
@@ -160,7 +160,7 @@ public class FileUtils {
 				lineScanner.close();
 		}
 
-		return getIntMatrixFromRowList(tmpMatrix, maxLength);
+		return getIntMatrixFromRowList(tmpMatrix, maxRowLength);
 	}
 
 	/**
