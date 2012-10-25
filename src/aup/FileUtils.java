@@ -46,6 +46,17 @@ public class FileUtils {
 		return filepath;
 	}
 
+	private static void fillIntList(List<Integer> values, Scanner numberScanner) throws IllegalStateException, IOException {
+		while (numberScanner.hasNext()) {
+			if (numberScanner.hasNextInt())
+				values.add(numberScanner.nextInt());
+			else {
+				throw new IOException(
+					"file does not only contain numbers and delimiters");
+			}
+		}
+	}
+
 	/**
 	 * Reads in all integers in a given file. If an error occurs null is
 	 * returned.
@@ -54,21 +65,13 @@ public class FileUtils {
 	 * @return an array of all integers in filename
 	 */
 	public static int[] readIntArray(String filename) {
-		int[] readValues = null;
 		List<Integer> values = new ArrayList<Integer>();
+		int[] readValues = null;
 		Scanner numberScanner = null;
 		try {
 			numberScanner = new Scanner(new File(filename));
-			while (numberScanner.hasNext()) {
-				if (numberScanner.hasNextInt())
-					values.add(numberScanner.nextInt());
-				else {
-					throw new IOException(
-							"file does not only contain numbers and delimiters");
-				}
-			}
+			fillIntList(values, numberScanner);
 			readValues = new int[values.size()];
-
 			for (int i = 0; i < values.size(); i++)
 				readValues[i] = values.get(i);
 		} catch (IllegalStateException illStateEx) {
@@ -86,7 +89,7 @@ public class FileUtils {
 	}
 
 	/**
-	 * This method return null in erroneous case or a matrix of integers in
+	 * This method returns null in erroneous case or a matrix of integers in
 	 * filename either. The only valid delimiter between numbers in a row is a
 	 * SPACE.
 	 *
@@ -109,14 +112,7 @@ public class FileUtils {
 				numberScanner = new Scanner(lineGetter.nextLine());
 				List<Integer> rowValues = new ArrayList<Integer>();
 
-				while (numberScanner.hasNext()) {
-					if (numberScanner.hasNextInt())
-						rowValues.add(numberScanner.nextInt());
-					else {
-						throw new IOException(
-								"a line does not only contain numbers and delimiters");
-					}
-				}
+				fillIntList(rowValues, numberScanner);
 
 				Integer[] row = new Integer[rowValues.size()];
 				row = rowValues.toArray(row);
