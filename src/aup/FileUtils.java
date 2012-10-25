@@ -46,6 +46,12 @@ public class FileUtils {
 		return filepath;
 	}
 
+	/**
+	*
+	* @param values list to fill with numbers
+	* @param numberScanner source of numbers
+	*
+	*/
 	private static void fillIntList(List<Integer> values, Scanner numberScanner) throws IllegalStateException, IOException {
 		while (numberScanner.hasNext())
 			if (numberScanner.hasNextInt())
@@ -56,7 +62,25 @@ public class FileUtils {
 	}
 
 	/**
-	 * Reads in all integers in a given file. If an error occurs null is
+	*
+	* @param tmpMatrix row list
+	* @param maxLength maximum row length
+	*
+	* @return quadratic matrix of ints
+	*/
+	private static int[][] getIntMatrixFromRowList(List<Integer[]> tmpMatrix, int maxLength) {
+		int[][] matrix = new int[tmpMatrix.size()][maxLength];
+
+		if (maxLength > 0 && tmpMatrix.size() > 0)
+			for (int i = 0; i < matrix.length; ++i)
+				for (int j = 0; j < tmpMatrix.get(i).length; ++j)
+					matrix[i][j] = tmpMatrix.get(i)[j];
+
+		return matrix;
+	}
+
+	/**
+	 * Reads in all integers in a given file. If an error occurs an empty array is
 	 * returned.
 	 *
 	 * @param filename
@@ -66,12 +90,10 @@ public class FileUtils {
 		List<Integer> values = new ArrayList<Integer>();
 		int[] readValues = null;
 		Scanner numberScanner = null;
+		
 		try {
 			numberScanner = new Scanner(new File(filename));
 			fillIntList(values, numberScanner);
-			readValues = new int[values.size()];
-			for (int i = 0; i < values.size(); i++)
-				readValues[i] = values.get(i);
 		} catch (IllegalStateException illStateEx) {
 			// exception is only thrown by Scanner in Java 7
 			System.err.println("Illegal State error: "
@@ -83,11 +105,15 @@ public class FileUtils {
 				numberScanner.close();
 		}
 
+		readValues = new int[values.size()];
+		for (int i = 0; i < values.size(); i++)
+			readValues[i] = values.get(i);
+
 		return readValues;
 	}
 
 	/**
-	 * This method returns null in erroneous case or a matrix of integers in
+	 * This method returns an empty matrix in erroneous case or a matrix of integers in
 	 * filename either. The only valid delimiter between numbers in a row is a
 	 * SPACE.
 	 *
@@ -96,59 +122,50 @@ public class FileUtils {
 	 * @return integer matrix
 	 */
 	public static int[][] readIntMatrix(String filename) {
-		int[][] readValues = null;
-		File dataSource = new File(filename);
-		List<Integer[]> valueMatrixList = new ArrayList<Integer[]>();
-		Scanner lineGetter = null;
-		Scanner numberScanner = null;
+		File dataFile = new File(filename);
+		List<Integer[]> tmpMatrix = new ArrayList<Integer[]>();
+		Scanner fileScanner = null;
+		Scanner lineScanner = null;
 		int maxLength = 0;
 
 		try {
-			lineGetter = new Scanner(dataSource);
+			fileScanner = new Scanner(dataFile);
 
-			while (lineGetter.hasNextLine()) {
-				numberScanner = new Scanner(lineGetter.nextLine());
-				List<Integer> rowValues = new ArrayList<Integer>();
+			while (fileScanner.hasNextLine()) {
+				lineScanner = new Scanner(fileScanner.nextLine());
+				List<Integer> tmpRow = new ArrayList<Integer>();
 
-				fillIntList(rowValues, numberScanner);
+				fillIntList(tmpRow, lineScanner);
 
-				Integer[] row = new Integer[rowValues.size()];
-				row = rowValues.toArray(row);
-				valueMatrixList.add(row);
+				Integer[] row = tmpRow.toArray(new Integer[tmpRow.size()]);
+				tmpMatrix.add(row);
+				
 				if (row.length > maxLength)
 					maxLength = row.length;
-				if (numberScanner != null)
-					numberScanner.close();
+				
+				if (lineScanner != null)
+					lineScanner.close();
 			}
 
-			readValues = new int[valueMatrixList.size()][maxLength];
-
-			if (maxLength > 0 && valueMatrixList.size() > 0)
-				for (int i = 0; i < readValues.length; ++i)
-					for (int j = 0; j < valueMatrixList.get(i).length; ++j)
-						readValues[i][j] = valueMatrixList.get(i)[j];
-
 		} catch (IllegalStateException illStateEx) {
-			System.err.println("Illegal State error: "
-					+ illStateEx.getMessage());
+			System.err.println("Illegal State error: " + illStateEx.getMessage());
 		} catch (FileNotFoundException fileNotFoundEx) {
 			System.err.println("IO error: " + fileNotFoundEx.getMessage());
 		} catch (IOException ioEx) {
 			System.err.println("IO error: " + ioEx.getMessage());
-			readValues = null;
 		} finally {
-			if (lineGetter != null)
-				lineGetter.close();
-			if (numberScanner != null)
-				numberScanner.close();
+			if (fileScanner != null)
+				fileScanner.close();
+			if (lineScanner != null)
+				lineScanner.close();
 		}
 
-		return readValues;
+		return getIntMatrixFromRowList(tmpMatrix, maxLength);
 	}
 
 	/**
 	 * Read strings located in a file into a string array. If no string could be
-	 * located in file, null is returned.
+	 * located in file, an empty array is returned.
 	 *
 	 * @param filename
 	 *            file to read in
@@ -161,13 +178,8 @@ public class FileUtils {
 
 		try {
 			stringScanner = new Scanner(new File(filename));
-
-			while (stringScanner.hasNext()) {
+			while (stringScanner.hasNext())
 				values.add(stringScanner.next());
-			}
-
-			readInValues = new String[values.size()];
-			readInValues = values.toArray(readInValues);
 		} catch (IllegalStateException illStateEx) {
 			System.err.println("Illegal state error: "
 					+ illStateEx.getMessage());
@@ -177,6 +189,9 @@ public class FileUtils {
 			if (stringScanner != null)
 				stringScanner.close();
 		}
+
+		readInValues = new String[values.size()];
+		readInValues = values.toArray(readInValues);
 
 		return readInValues;
 	}
