@@ -47,14 +47,12 @@ public class FileUtils {
 	}
 
 	private static void fillIntList(List<Integer> values, Scanner numberScanner) throws IllegalStateException, IOException {
-		while (numberScanner.hasNext()) {
+		while (numberScanner.hasNext())
 			if (numberScanner.hasNextInt())
 				values.add(numberScanner.nextInt());
-			else {
+			else
 				throw new IOException(
 					"file does not only contain numbers and delimiters");
-			}
-		}
 	}
 
 	/**
@@ -157,8 +155,8 @@ public class FileUtils {
 	 * @return strings in the file
 	 */
 	public static String[] readStringArray(String filename) {
-		String[] readInValues = null;
 		List<String> values = new ArrayList<String>();
+		String[] readInValues = null;
 		Scanner stringScanner = null;
 
 		try {
