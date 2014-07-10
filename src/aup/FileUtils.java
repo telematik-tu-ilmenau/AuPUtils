@@ -26,7 +26,7 @@ public class FileUtils {
 	 * @return absolute path of a selected file
 	 */
 	public static String getFilePath() {
-		String filepath = "";
+		String filePath = "";
 
 		try {
 			final JFileChooser fileChooser = new JFileChooser();
@@ -35,7 +35,7 @@ public class FileUtils {
 			int returnVal = fileChooser.showOpenDialog(null);
 			if (returnVal == JFileChooser.APPROVE_OPTION) {
 				File chosenFile = fileChooser.getSelectedFile();
-				filepath = chosenFile.getAbsolutePath();
+				filePath = chosenFile.getAbsolutePath();
 			}
 		} catch (HeadlessException hlEx) {
 			System.err.println("headless error: " + hlEx.getMessage());
@@ -43,7 +43,7 @@ public class FileUtils {
 			System.err.println("security error: " + secEx.getMessage());
 		}
 
-		return filepath;
+		return filePath;
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class FileUtils {
 	* @param tmpMatrix row list
 	* @param maxRowLength maximum row length
 	*
-	* @return quadratic matrix of ints
+	* @return quadratic matrix of integers
 	*/
 	private static int[][] getIntMatrixFromRowList(List<Integer[]> tmpMatrix, int maxRowLength) {
 		int[][] matrix = new int[tmpMatrix.size()][maxRowLength];
@@ -83,7 +83,7 @@ public class FileUtils {
 	 * Reads in all integers in a given file. If an error occurs an empty array is
 	 * returned.
 	 *
-	 * @param filename
+	 * @param filename file to read from
 	 * @return an array of all integers in filename
 	 */
 	public static int[] readIntArray(String filename) {
@@ -117,8 +117,7 @@ public class FileUtils {
 	 * filename either. The only valid delimiter between numbers in a row is a
 	 * SPACE.
 	 *
-	 * @param filename
-	 *            file to be read
+	 * @param filename file to be read
 	 * @return integer matrix
 	 */
 	public static int[][] readIntMatrix(String filename) {
@@ -167,8 +166,7 @@ public class FileUtils {
 	 * Read strings located in a file into a string array. If no string could be
 	 * located in file, an empty array is returned.
 	 *
-	 * @param filename
-	 *            file to read in
+	 * @param filename file to read in
 	 * @return strings in the file
 	 */
 	public static String[] readStringArray(String filename) {
