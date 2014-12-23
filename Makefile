@@ -8,16 +8,13 @@ CLASSPATH=lib/junit.jar:test:src
 # Windows
 # CLASSPATH=lib/junit.jar;test;src
 
-all: aupUtils jar javadoc tests examples json-simple
+all: aupUtils jar javadoc tests examples
 
-jar: aupUtils json-simple
-	jar -cf aupUtils.jar -C $(SOURCEPATH) aup -C $(SOURCEPATH) org
+jar: aupUtils
+	jar -cf aupUtils.jar -C $(SOURCEPATH) aup
 
 aupUtils:
 	javac $(SOURCEPATH)/aup/*.java
-
-json-simple:
-	javac $(SOURCEPATH)/org/json/simple/*.java $(SOURCEPATH)/org/json/simple/parser/*.java
 
 javadoc:
 	javadoc $(SOURCEPATH)/aup/*.java \
@@ -32,8 +29,6 @@ examples: aupUtils
 clean:
 	rm -rf javadoc
 	rm -rf $(SOURCEPATH)/aup/*.class
-	rm -rf $(SOURCEPATH)/org/json/simple/*.class
-	rm -rf $(SOURCEPATH)/org/json/simple/parser/*.class
 	rm -rf $(EXAMPLEPATH)/*.class
 	rm -f aupUtils.jar
 	rm -rf $(TESTPATH)/*.class
