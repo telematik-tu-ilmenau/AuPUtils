@@ -11,7 +11,10 @@ import java.math.BigInteger;
  * @version 0.02
  *
  */
-public class IOUtils {
+public final class IOUtils {
+    private IOUtils() {
+        
+    }
 
 	/**
 	 * Get an InputReader for the standard input stream.

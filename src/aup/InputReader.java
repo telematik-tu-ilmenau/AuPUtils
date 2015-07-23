@@ -10,7 +10,11 @@ import java.math.BigInteger;
  * @version 0.03
  *
  */
-public class InputReader {
+public final class InputReader {
+	private InputReader() {
+
+    }
+
 	/**
 	*	stream from which data will be read in
 	*/

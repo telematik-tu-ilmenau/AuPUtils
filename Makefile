@@ -3,10 +3,7 @@ LIBPATH=lib
 TESTPATH=test
 EXAMPLEPATH=examples
 
-# Linux/Unix/OSX
 CLASSPATH=lib/junit.jar:test:src
-# Windows
-# CLASSPATH=lib/junit.jar;test;src
 
 all: aupUtils jar javadoc tests examples
 

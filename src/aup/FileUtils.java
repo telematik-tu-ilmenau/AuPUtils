@@ -12,7 +12,11 @@ import javax.swing.JFileChooser;
  * @version 0.01
  *
  */
-public class FileUtils {
+public final class FileUtils {
+	private FileUtils() {
+
+    }
+
 	/**
 	 * this variable sets the title of the dialog shown after calling
 	 * getFilePath()
