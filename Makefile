@@ -1,7 +1,9 @@
-SOURCEPATH=src
-LIBPATH=lib
-TESTPATH=test
-EXAMPLEPATH=examples
+SOURCEPATH:=src
+LIBPATH:=lib
+TESTPATH:=test
+EXAMPLEPATH:=examples
+JAVA_SOURCE:=1.6
+JAVA_TARGET:=1.6
 
 CLASSPATH=lib/junit.jar:test:src
 
@@ -11,17 +13,17 @@ jar: aupUtils
 	jar -cf aupUtils.jar -C $(SOURCEPATH) aup
 
 aupUtils:
-	javac $(SOURCEPATH)/aup/*.java
+	javac -source $(JAVA_SOURCE) -target $(JAVA_TARGET) $(SOURCEPATH)/aup/*.java
 
 javadoc:
 	javadoc $(SOURCEPATH)/aup/*.java \
 		    -d javadoc
 
 tests: aupUtils
-	javac -cp $(CLASSPATH) $(TESTPATH)/*.java
+	javac -source $(JAVA_SOURCE) -target $(JAVA_TARGET) -cp $(CLASSPATH) $(TESTPATH)/*.java
 
 examples: aupUtils
-	javac -cp $(CLASSPATH) $(EXAMPLEPATH)/*.java
+	javac -source $(JAVA_SOURCE) -target $(JAVA_TARGET) -cp $(CLASSPATH) $(EXAMPLEPATH)/*.java
 
 clean:
 	rm -rf javadoc
