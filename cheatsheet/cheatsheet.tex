@@ -1,6 +1,6 @@
 \documentclass[papersize=a4,paper=landscape,11pt]{scrartcl}
 
-\usepackage[top=1cm, bottom=2.5cm, left=1cm, right=1cm]{geometry}
+\usepackage[top=0.5cm, bottom=2.5cm, left=0.5cm, right=0.5cm]{geometry}
 
 \usepackage[default]{sourcesanspro}
 \usepackage[utf8]{inputenc}
@@ -38,8 +38,13 @@
 	commentstyle=\color{pgreen},
 	keywordstyle=\color{pblue},
 	stringstyle=\color{pred},
-	basicstyle=\ttfamily
+	basicstyle=\ttfamily,
+	numbers=none,
+	frame=single,
+	rulecolor=\color{Gray}
 }
+
+\setlength{\columnsep}{0.5cm}
 
 \usepackage[english]{isodate}
 
@@ -81,9 +86,7 @@ i = j + 27;
 \begin{lstlisting}
 int[] myArray = new int[10];
 myArray[2] = 5;
-\end{lstlisting}
 
-\begin{lstlisting}
 // a 2D array or matrix
 int[][] intArray = new int[10][20];
 
@@ -99,9 +102,6 @@ An array has a length property, whereas a String object has a length method.
 \begin{lstlisting}
 int[] myArray = new int[50];
 int arrayLength = myArray.length;
-\end{lstlisting}
-
-\begin{lstlisting}
 String s = "I'm a string!";
 int stringLength = s.length();
 \end{lstlisting}
@@ -110,11 +110,11 @@ int stringLength = s.length();
 Use the if statement, if you want to execute code only if some boolean conditions hold or not.
 \begin{lstlisting}
 if(statement) {
-
+  ...
 } else if(statement) {
-
+  ...
 } else {
-
+  ...
 }
 \end{lstlisting}
 Use the switch statement, if you have a multitude of possible execution paths.
