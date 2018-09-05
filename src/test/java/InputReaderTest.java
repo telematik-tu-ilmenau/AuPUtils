@@ -11,6 +11,10 @@ import java.math.BigInteger;
 
 public class InputReaderTest {
 
+	private String getTestFile(String resourceName) {
+		return InputReaderTest.class.getClassLoader().getResource(resourceName).getFile();
+	}
+
 	private InputReader getInputReader(String file) {
 		FileReader filestream = null;
 		try {
@@ -25,7 +29,7 @@ public class InputReaderTest {
 
 	@Test
 	public void test_readBigDecimal() {
-		InputReader inputReader = getInputReader("test/inputs/readFloatingPoints.txt");
+		InputReader inputReader = getInputReader(getTestFile("readFloatingPoints.txt"));
 		
 		assertEquals(new BigDecimal("1.0"), inputReader.readBigDecimal());
 		assertEquals(new BigDecimal("2.0"), inputReader.readBigDecimal());
@@ -34,7 +38,7 @@ public class InputReaderTest {
 
    	@Test
 	public void test_readBigInteger() {
-		InputReader inputReader = getInputReader("test/inputs/readIntegers.txt");
+		InputReader inputReader = getInputReader(getTestFile("readIntegers.txt"));
 		
 		assertEquals(new BigInteger("1"), inputReader.readBigInteger());
 		assertEquals(new BigInteger("2"), inputReader.readBigInteger());
@@ -43,7 +47,7 @@ public class InputReaderTest {
 
 	@Test
 	public void test_readInt() {
-		InputReader inputReader = getInputReader("test/inputs/readIntegers.txt");
+		InputReader inputReader = getInputReader(getTestFile("readIntegers.txt"));
 		
 		assertEquals(1, inputReader.readInt());
 		assertEquals(2, inputReader.readInt());
@@ -52,7 +56,7 @@ public class InputReaderTest {
 
    	@Test
 	public void test_readLong() {
-		InputReader inputReader = getInputReader("test/inputs/readIntegers.txt");
+		InputReader inputReader = getInputReader(getTestFile("readIntegers.txt"));
 		
 		assertEquals(1L, inputReader.readInt());
 		assertEquals(2L, inputReader.readInt());
@@ -61,7 +65,7 @@ public class InputReaderTest {
 
    	@Test
 	public void test_readChar() {
-		InputReader inputReader = getInputReader("test/inputs/readChar.txt");
+		InputReader inputReader = getInputReader(getTestFile("readChar.txt"));
 		
 		assertEquals('0', inputReader.readChar());
 		assertEquals('1', inputReader.readChar());
@@ -70,7 +74,7 @@ public class InputReaderTest {
 
    	@Test
 	public void test_readDouble() {
-		InputReader inputReader = getInputReader("test/inputs/readFloatingPoints.txt");
+		InputReader inputReader = getInputReader(getTestFile("readFloatingPoints.txt"));
 		
 		assertTrue(Math.abs(1.0 - inputReader.readDouble()) < 0.001);
 		assertTrue(Math.abs(2.0 - inputReader.readDouble()) < 0.001);
@@ -79,7 +83,7 @@ public class InputReaderTest {
 
    	@Test
 	public void test_readFloat() {
-		InputReader inputReader = getInputReader("test/inputs/readFloatingPoints.txt");
+		InputReader inputReader = getInputReader(getTestFile("readFloatingPoints.txt"));
 		
 		assertTrue(Math.abs(1.0F - inputReader.readFloat()) < 0.001);
 		assertTrue(Math.abs(2.0F - inputReader.readFloat()) < 0.001);
@@ -88,7 +92,7 @@ public class InputReaderTest {
 
    	@Test
 	public void test_readString() {
-		InputReader inputReader = getInputReader("test/inputs/readString.txt");
+		InputReader inputReader = getInputReader(getTestFile("readString.txt"));
 		
 		assertTrue("Test 1 a !".equals(inputReader.readString()));
 		assertTrue("Test 2 b !".equals(inputReader.readString()));

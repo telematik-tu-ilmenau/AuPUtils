@@ -1,3 +1,0 @@
-module aup {
-  exports aup;
-}

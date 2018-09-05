@@ -5,10 +5,14 @@ import static org.junit.Assert.*;
 
 public class FileUtilsTest {
 
+	private String getTestFile(String resourceName) {
+		return FileUtilsTest.class.getClassLoader().getResource(resourceName).getFile();
+	}
+
 	@Test
 	public void test_readIntArray() {
-		String filename = "test/inputs/readIntArrayMatrix.txt";
-		int[] result = FileUtils.readIntArray(filename);
+		String filename = "readIntArrayMatrix.txt";
+		int[] result = FileUtils.readIntArray(getTestFile(filename));
 		for (int i = 0; i < result.length; ++i) {
 			assertEquals(i+1, result[i]);
 		}
@@ -16,8 +20,8 @@ public class FileUtilsTest {
 
 	@Test
 	public void test_readIntMatrix() {
-		String filename = "test/inputs/readIntArrayMatrix.txt";
-		int[][] result = FileUtils.readIntMatrix(filename);
+		String filename = "readIntArrayMatrix.txt";
+		int[][] result = FileUtils.readIntMatrix(getTestFile(filename));
 		
 		assertEquals(4, result.length);
 
@@ -38,8 +42,8 @@ public class FileUtilsTest {
 
 	@Test
 	public void test_readStringArray() {
-		String filename = "test/inputs/readStringArray.txt";
-		String[] result = FileUtils.readStringArray(filename);
+		String filename = "readStringArray.txt";
+		String[] result = FileUtils.readStringArray(getTestFile(filename));
 		
 		assertEquals(6, result.length);
 
