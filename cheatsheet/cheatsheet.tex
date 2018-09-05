@@ -1,0 +1,270 @@
+\documentclass[papersize=a4,paper=landscape,11pt]{scrartcl}
+
+\usepackage[top=1cm, bottom=2.5cm, left=1cm, right=1cm]{geometry}
+ 
+\usepackage[default]{sourcesanspro}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lipsum}
+\usepackage{multicol}
+
+\usepackage{tabularx}
+
+\usepackage[table]{xcolor}
+\definecolor{Primary}{HTML}{6200EE}
+\definecolor{Gray}{gray}{0.85}
+\definecolor{LightPrimary}{gray}{0.95}
+
+\newcommand{\tableHeaderThree}[3]{\rowcolor{Primary} \leavevmode\color{white}{\bfseries #1} & \leavevmode\color{white}{\bfseries #2} & \leavevmode\color{white}{\bfseries #3}}
+\newcommand{\tableHeaderTwo}[2]{\rowcolor{Primary} \leavevmode\color{white}{\bfseries #1} & \leavevmode\color{white}{\bfseries #2}}
+\newcommand{\tableHeaderOne}[1]{\rowcolor{Primary} \leavevmode\color{white}{\bfseries #1}}
+\newcommand{\oddRow}{\rowcolor{LightPrimary}}
+\newcommand{\evenRow}{\rowcolor{Gray}}
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+\usepackage{hyperref}
+
+\usepackage{listings}
+\lstset{language=Java,
+	showspaces=false,
+	showtabs=false,
+	breaklines=true,
+	showstringspaces=false,
+	breakatwhitespace=true,
+	commentstyle=\color{pgreen},
+	keywordstyle=\color{pblue},
+	stringstyle=\color{pred},
+	basicstyle=\ttfamily
+}
+
+\usepackage[english]{isodate}
+
+\title{Java Cheat Sheet}
+\author{Simon Buttgereit \and Markus Theil}
+\date{Version: \isodate\today}
+
+\begin{document}
+\begin{multicols*}{3}
+\maketitle
+\subsection*{Numerical Data Types}
+\begin{tabularx}{\columnwidth}{llX}
+	\tableHeaderThree{Data Type}{Size}{Range/Example}\\
+	\oddRow byte & 8 bit & $-128 \ldots 127$\\
+	\evenRow short & 16 bit & $-32768\ldots32767$\\
+	\oddRow int & 32 bit & $-2^{31}\ldots2^{31}-1$\\
+	\evenRow long & 64 bit & $-2^{63}\ldots2^{63}-1$\\
+	\oddRow float & 32 bit & $-0.1$f\\
+	\evenRow double & 64 bit & $0.3$\\
+\end{tabularx}
+
+\subsection*{Other Data Types}
+\begin{tabularx}{\columnwidth}{lX}
+	\tableHeaderTwo{Data Type}{Range/Example}\\
+	\oddRow boolean & true, false\\
+	\evenRow char & 'c' (single character)\\
+	\oddRow String & "I'm a string"\\
+\end{tabularx}
+
+\subsubsection*{Variables}
+Use variables to read and store values which are changing throughout the execution.
+\begin{lstlisting}
+int i;
+int j = 3;
+i = j + 27;
+\end{lstlisting}
+\subsection*{Arrays}
+    Use arrays to group multiple identically typed values together. Index range goes from  0 to length - 1.
+\begin{lstlisting}
+int[] myArray = new int[10];
+myArray[2] = 5;
+\end{lstlisting}
+
+\begin{lstlisting}
+// a 2D array or matrix
+int[][] intArray = new int[10][20];
+
+// a 3D array
+int[][][] intArray = null;
+intArray = new int[10][20][10];
+\end{lstlisting}
+
+\subsubsection*{Length/Size of Arrays and Strings}
+The index range of arrays and strings goes from 0 to length - 1.
+An array has a length property, whereas a String object has a length method.
+
+\begin{lstlisting}
+int[] myArray = new int[50];
+int arrayLength = myArray.length;
+\end{lstlisting}
+
+\begin{lstlisting}
+String s = "I'm a string!";
+int stringLength = s.length();
+\end{lstlisting}
+
+\subsection*{Conditional Statements}
+Use the if statement, if you want to execute code only if some boolean conditions hold or not.
+\begin{lstlisting}
+if(statement) {
+
+} else if(statement) {
+
+} else {
+
+}
+\end{lstlisting}
+Use the switch statement, if you have a multitude of possible execution paths.
+\begin{lstlisting}
+switch(variable) {
+  case 1:
+    System.out.println("A");
+    break;
+  case 5:
+    System.out.println("B");
+    break;
+  default:
+    System.out.println("Otherwise");
+    break;
+}
+\end{lstlisting}
+
+\subsection*{Loop Statements}
+Below you can find examples of different loop statements, each printing the numbers 0 to 9.
+\begin{lstlisting}
+for(int i = 0; i < 10; ++i) {
+  System.out.println("Number " + i);
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+int i = 0;
+while(i < 10) {
+  System.out.println("Number " + i);
+  i++;
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+int i = 0;
+do {
+  System.out.println("Number " + i);
+  i++;
+} while(i < 10);
+\end{lstlisting}
+
+\subsection*{Methods}
+Use methods to repeatedly use identical code.
+\begin{lstlisting}
+static public int addThree(int i) {
+  int j = i + 3;
+  System.out.println(i + " -> " + j);
+  return j;
+}
+\end{lstlisting}
+
+\subsection*{Comments}
+Use comments in order to add textual annotations to your code or temporarily disable some code path.
+\begin{lstlisting}
+// single-line comment
+
+/*
+ * multi-line comment
+ */
+\end{lstlisting}
+
+\subsection*{Arithmetic Operators}
+Use arithmetic operators for numerical calculations.
+\begin{tabularx}{\columnwidth}{lX}
+	\tableHeaderTwo{Operator}{Explanation}\\
+	\oddRow + & Addition\\
+	\evenRow - & Subtraction\\
+	\oddRow * & Multiplication\\
+	\evenRow / & Division\\
+	\oddRow \% & Division Remainder (Modulus)\\
+	\evenRow ++ & Increment\\
+	\oddRow -- & Decrement\\
+\end{tabularx}
+
+\subsection*{Relational Operators}
+\begin{tabularx}{\columnwidth}{lX}
+	\tableHeaderTwo{Operator}{Explanation}\\
+	\oddRow == & equal\\
+	\evenRow != & non-equal\\
+	\oddRow > & greater\\
+	\evenRow < & less\\
+	\oddRow >= & greater or equal\\
+	\evenRow <= & less or equal\\
+\end{tabularx}
+
+\subsection*{Logical Operators}
+\begin{tabularx}{\columnwidth}{lX}
+	\tableHeaderTwo{Operator}{Explanation}\\
+	\oddRow \&\& & AND (short-circuit)\\
+	\evenRow || & OR (short-circuit)\\
+	\oddRow ! & NOT\\
+\end{tabularx}
+
+\subsection*{Bitwise Operators}
+\begin{tabularx}{\columnwidth}{lX}
+	\tableHeaderTwo{Operator}{Explanation}\\
+	\oddRow \& & AND\\
+	\evenRow | & OR\\
+	\oddRow \textasciicircum & XOR\\
+	\evenRow \textasciitilde & NOT\\
+	\oddRow \textgreater{}\textgreater & shift right\\
+	\evenRow \textless{}\textless & shift left\\
+	\oddRow >{}>{}> & shift right zero fill\\
+\end{tabularx}
+
+
+\subsection*{IOUtils Package}
+You can find a pre-built package at \url{https://goo.gl/VcVasP}.
+The source code is at \url{https://github.com/telematik-tu-ilmenau/AuPUtils}.
+
+\begin{lstlisting}
+import aup.*;
+...
+int n = IOUtils.readInt();
+System.out.println("Number: " + n);
+\end{lstlisting}
+
+\subsubsection*{Random Numbers}
+Math.random returns a random number in $[0,1)$.
+\begin{lstlisting}
+double rD = Math.random() * 5 + 1;
+...
+int r = (int)(Math.random() * 5 + 1);
+\end{lstlisting}
+Java also ships a separate class for generating random numbers.
+\begin{lstlisting}
+Random rand = new Random(); 
+int r = rand.nextInt(5);
+\end{lstlisting}
+
+\subsection*{Mathematical Functions}
+\begin{tabularx}{\columnwidth}{lX}
+	\tableHeaderTwo{Method}{Explanation}\\
+	\oddRow Math.abs(x) & |x|\\
+	\evenRow Math.asin() & $\sin^{-1}$\\
+	\oddRow Math.acos(x) & $\cos^{-1}(x)$\\
+	\evenRow Math.atan(x) & $\tan^{-1}(x)$\\
+	\oddRow Math.sin(x) & $\sin(x)$\\
+	\evenRow Math.cos(x) & $\cos(x)$\\
+	\oddRow Math.tan(x) & $\tan(x)$\\
+	\evenRow Math.log(x) & $\log(x)$\\
+	\oddRow Math.sqrt(x) & $\sqrt{x}$\\
+	\evenRow Math.exp(x) & $e^x$\\
+	\oddRow Math.pow(x,y) & $x^y$\\
+	\evenRow Math.floor(x) & $\lfloor x \rfloor$\\
+	\oddRow Math.ceil(x) & $\lceil x \rceil$ 
+\end{tabularx}
+
+\subsubsection*{Java Documentation}
+Find the latest Java library documentation at \url{https://docs.oracle.com/javase/10/docs/api/overview-summary.html}.
+\end{multicols*}
+
+\end{document}
