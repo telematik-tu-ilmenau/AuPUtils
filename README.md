@@ -7,4 +7,5 @@ To build a JAR file and Javadoc documentation just type the following commands:
 
     git clone git://github.com/telematik-tu-ilmenau/AuPUtils.git
     cd AuPUtils
-    make
+    gradle wrapper
+    ./gradlew build
