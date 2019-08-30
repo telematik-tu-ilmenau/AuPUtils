@@ -9,6 +9,10 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    from sourceSets["main"].allSource
+}
+
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12+'
 }
