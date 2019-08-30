@@ -1,5 +1,5 @@
 all:
-	pdflatex cheatsheet.tex
+	latexmk -pdf cheatsheet.tex
 
 clean:
-	rm -f *.aux blatt*.pdf *.log *.out
+	latexmk -C
